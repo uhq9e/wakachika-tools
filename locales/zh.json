@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "generate": "生成",
+    "moreTools": "更多工具",
+    "language": "语言",
+    "languageNames": {
+      "zh": "中文",
+      "ja": "日语",
+      "en": "英语"
+    },
+    "options": "选项"
+  },
+  "pages": {
+    "/": {
+      "title": "WKCK工具箱 Powered by uhq9e",
+      "description": "属于若千人自己的工具箱（迫真）",
+      "navTitle": "WKCK工具箱",
+      "navTitleSub": "Powered by uhq9e",
+      "mainSite": "主站"
+    },
+    "/logo-generator": {
+      "title": "是勇者系列Logo生成器",
+      "description": "生成是勇者系列Logo",
+      "firstLine": "第一行",
+      "secondLine": "第二行",
+      "selectSeries": "选择系列",
+      "seriesNames": {
+        "yuyuyu": "结城友奈是勇者",
+        "wasuyu": "鹫尾须美是勇者",
+        "nowayu": "乃木若叶是勇者",
+        "kumeyu": "楠芽吹是勇者",
+        "uhimi": "上里日向是巫女"
+      },
+      "series": "系列",
+      "saveImage": "保存图片",
+      "vertical": "纵向"
+    }
+  }
+}

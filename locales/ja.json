@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "generate": "生成する",
+    "moreTools": "その他のツール",
+    "language": "言語",
+    "languageNames": {
+      "zh": "中国語",
+      "ja": "日本語",
+      "en": "英語"
+    },
+    "options": "オプション"
+  },
+  "pages": {
+    "/": {
+      "title": "WKCKツールボックス Powered by uhq9e",
+      "description": "A YuYuYu toolbox powered by uhq9e",
+      "navTitle": "WKCKツールボックス",
+      "navTitleSub": "Powered by uhq9e",
+      "mainSite": "メインサイト"
+    },
+    "/logo-generator": {
+      "title": "勇者であるシリーズロゴジェネレーター",
+      "description": "勇者であるシリーズのロゴを生成する",
+      "firstLine": "一行目",
+      "secondLine": "二行目",
+      "selectSeries": "シリーズを選択",
+      "seriesNames": {
+        "yuyuyu": "結城友奈は勇者である",
+        "wasuyu": "鷲尾須美は勇者である",
+        "nowayu": "乃木若葉は勇者である",
+        "kumeyu": "楠芽吹は勇者である",
+        "uhimi": "上里ひなたは巫女である"
+      },
+      "series": "シリーズ",
+      "saveImage": "画像を保存",
+      "vertical": "縦向き"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "shared": {
+    "generate": "Generate",
+    "moreTools": "More tools",
+    "language": "Language",
+    "languageNames": {
+      "zh": "Chinese",
+      "ja": "Japanese",
+      "en": "English"
+    },
+    "options": "Options"
+  },
+  "pages": {
+    "/": {
+      "title": "WKCK Toolbox Powered by uhq9e",
+      "description": "A YuYuYu toolbox powered by uhq9e",
+      "navTitle": "WKCK Toolbox",
+      "navTitleSub": "Powered by uhq9e",
+      "mainSite": "Main site"
+    },
+    "/logo-generator": {
+      "title": "Yuusha de Aru series Logo Generator",
+      "description": "Generate Yuusha de Aru series logo",
+      "firstLine": "First Line",
+      "secondLine": "Second Line",
+      "selectSeries": "Select series",
+      "seriesNames": {
+        "yuyuyu": "Yuuki Yuuna is a Hero",
+        "wasuyu": "Washio Sumi is a Hero",
+        "nowayu": "Nogi Wakaba is a Hero",
+        "kumeyu": "Kusunoki Mebuki is a Hero",
+        "uhimi": "Uesato Hinata is a Miko"
+      },
+      "series": "Series",
+      "saveImage": "Save image",
+      "vertical": "Vertical"
+    }
+  }
+}
