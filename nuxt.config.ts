@@ -1,7 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/i18n", "@nuxtjs/tailwindcss", "shadcn-nuxt", "nuxt-icon"],
+  modules: [
+    "@nuxtjs/i18n",
+    "@vite-pwa/nuxt",
+    "@nuxtjs/tailwindcss",
+    "shadcn-nuxt",
+    "nuxt-icon",
+  ],
   shadcn: {
     prefix: "",
     componentDir: "./components/ui",
@@ -31,5 +37,49 @@ export default defineNuxtConfig({
       redirectOn: "root",
     },
     strategy: "prefix_except_default",
+  },
+  pwa: {
+    strategies: "generateSW",
+    registerType: "autoUpdate",
+    manifest: {
+      name: "WKCK Toolbox",
+      short_name: "WKCK Toolbox",
+      description: "A YuYuYu toolbox powered by uhq9e",
+      theme_color: "#9b5c86",
+      icons: [
+        {
+          src: "pwa-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+        {
+          src: "pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any",
+        },
+      ],
+    },
+    workbox: {
+      globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"],
+    },
+    injectManifest: {
+      globPatterns: ["**/*.{js,css,html,ico,png,svg,webp}"],
+    },
+    client: {
+      installPrompt: true,
+    },
+    devOptions: {
+      enabled: true,
+      suppressWarnings: true,
+      navigateFallback: "/",
+      navigateFallbackAllowlist: [/^\/$/],
+      type: "module",
+    },
   },
 });
