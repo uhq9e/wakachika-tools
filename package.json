@@ -1,6 +1,6 @@
 {
   "name": "wakachika-tools",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "build": "nuxt build",
@@ -17,7 +17,7 @@
     "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "dearu-logo-generator": "^1.1.7",
+    "dearu-logo-generator": "^1.1.9",
     "nuxt": "^3.10.3",
     "radix-vue": "^1.5.2",
     "tailwind-merge": "^2.2.1",

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { LogoGenerator, nowayu, kumeyu } from "dearu-logo-generator";
-import type { ILogoMeta } from "dearu-logo-generator/types/lib/types/shared";
+import type {
+  IHighlightRange,
+  ILogoMeta,
+} from "dearu-logo-generator/types/lib/types/shared";
 
 const localePath = useLocalePath();
 const { t } = useI18n();
@@ -32,19 +35,34 @@ const currentSeriesMeta = computed(() => {
   return seriesMap[selectedSeries.value];
 });
 
+const highlightedCells = ref<[number, number][]>([
+  [1, 0],
+  [1, 1],
+]);
+const highlights = computed(() => {
+  const ranges: IHighlightRange[] = [];
+
+  for (const [lineIndex, charIndex] of highlightedCells.value) {
+    ranges.push({ line: lineIndex as 0 | 1, start: charIndex, end: charIndex });
+  }
+
+  return ranges;
+});
+
 const svgEl = ref(await onGenerate());
 const svgStr = computed(() => svgEl.value.outerHTML);
 
 async function generate(
   firstLine: string,
-  secondLine: string
+  secondLine: string,
+  highlights: IHighlightRange[] = []
 ): Promise<SVGSVGElement> {
-  const svgEl = await lg.generate(firstLine, secondLine);
+  const svgEl = await lg.generate(firstLine, secondLine, highlights);
   return svgEl;
 }
 
 async function onGenerate(): Promise<SVGSVGElement> {
-  return await generate(firstLine.value, secondLine.value);
+  return await generate(firstLine.value, secondLine.value, highlights.value);
 }
 
 function onSave() {
@@ -65,12 +83,62 @@ function onSave() {
   };
 }
 
-watch([firstLine, secondLine, currentSeriesMeta, isVertical], async () => {
-  lg.setMeta(currentSeriesMeta.value);
-  lg.setDirection(isVertical.value ? "vertical" : "horizontal");
-  const _svgEl = await onGenerate();
-  svgEl.value = _svgEl;
-});
+function toggleHighlightHandler(event: MouseEvent) {
+  let lineIndex: number | null = null;
+  let charIndex: number | null = null;
+
+  let target = event.target as HTMLElement | SVGElement;
+
+  if (!(target as unknown as SVGElement).ownerSVGElement) return null;
+
+  loop: while (target) {
+    if (target.id && /[line|char]_\d/.test(target.id)) {
+      const [kind, index] = target.id.split("_");
+      switch (kind) {
+        case "line":
+          lineIndex = Number(index);
+          break loop;
+
+        case "char":
+          charIndex = Number(index);
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    if (!target.parentElement) break;
+    target = target.parentElement as HTMLElement | SVGElement;
+  }
+
+  if (lineIndex !== null && charIndex !== null) {
+    if (
+      highlightedCells.value.some(
+        ([line, char]) => line === lineIndex && char === charIndex
+      )
+    ) {
+      highlightedCells.value = highlightedCells.value.filter(
+        ([line, char]) => line !== lineIndex || char !== charIndex
+      );
+    } else {
+      highlightedCells.value = [
+        ...highlightedCells.value,
+        [lineIndex, charIndex],
+      ];
+    }
+  }
+}
+
+watch(
+  [firstLine, secondLine, currentSeriesMeta, isVertical, highlights],
+  async () => {
+    lg.setMeta(currentSeriesMeta.value);
+    lg.setDirection(isVertical.value ? "vertical" : "horizontal");
+    const _svgEl = await onGenerate();
+    svgEl.value = _svgEl;
+  }
+);
 </script>
 
 <template>
@@ -89,6 +157,7 @@ watch([firstLine, secondLine, currentSeriesMeta, isVertical], async () => {
       <div
         class="flex justify-center w-full *:max-w-2xl *:max-h-[75vh]"
         v-html="svgStr"
+        @click="toggleHighlightHandler"
       ></div>
       <div class="flex flex-col sm:flex-row sm:items-end gap-3">
         <div class="flex flex-col gap-1.5">
@@ -150,7 +219,9 @@ watch([firstLine, secondLine, currentSeriesMeta, isVertical], async () => {
               </Select>
               <div class="flex items-center gap-2">
                 <Switch v-model:checked="isVertical" id="vertical" />
-                <Label for="vertical">{{ $t("pages./logo-generator.vertical") }}</Label>
+                <Label for="vertical">{{
+                  $t("pages./logo-generator.vertical")
+                }}</Label>
               </div>
             </PopoverContent>
           </Popover>
