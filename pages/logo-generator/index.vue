@@ -159,7 +159,7 @@ watch(
         v-html="svgStr"
         @click="toggleHighlightHandler"
       ></div>
-      <div class="flex flex-col sm:flex-row sm:items-end gap-3">
+      <div class="flex flex-col items-end sm:flex-row gap-3">
         <div class="flex flex-col gap-1.5">
           <Label for="firstline">
             {{ $t("pages./logo-generator.firstLine") }}
