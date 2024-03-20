@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LogoGenerator, nowayu, kumeyu } from "dearu-logo-generator";
+import { LogoGenerator, nowayu, kumeyu, wasuyu } from "dearu-logo-generator";
 import type {
   IHighlightRange,
   ILogoMeta,
@@ -16,8 +16,9 @@ useSeoMeta({
 });
 
 const seriesMap: Record<string, ILogoMeta> = {
-  nowayu: nowayu,
-  kumeyu: kumeyu,
+  nowayu,
+  kumeyu,
+  wasuyu,
 };
 
 const defaultSeries = "nowayu";
