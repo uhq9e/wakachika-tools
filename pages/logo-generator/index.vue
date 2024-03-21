@@ -16,9 +16,9 @@ useSeoMeta({
 });
 
 const seriesMap: Record<string, ILogoMeta> = {
+  wasuyu,
   nowayu,
   kumeyu,
-  wasuyu,
 };
 
 const defaultSeries = "nowayu";
