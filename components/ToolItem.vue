@@ -25,7 +25,7 @@ defineSlots<{
       </div>
       <hr />
     </template>
-    <div class="flex flex-col gap-2 p-4">
+    <div class="flex flex-col gap-0.5 p-4">
       <div class="text-base font-medium">{{ itemTitle }}</div>
       <div v-if="description" class="text-xs/relaxed">{{ description }}</div>
     </div>

@@ -34,6 +34,10 @@
       "series": "Series",
       "saveImage": "Save image",
       "vertical": "Vertical"
+    },
+    "/scenario-search": {
+      "title": "YuYuYui Scenario Search",
+      "inputPlaceholder": "Enter the line fragment you want to search"
     }
   }
 }

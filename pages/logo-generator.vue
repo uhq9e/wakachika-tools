@@ -144,16 +144,7 @@ watch(
 
 <template>
   <div class="size-full flex flex-col">
-    <div class="flex flex-wrap items-center gap-2">
-      <NuxtLink :href="localePath('/')" class="flex items-center gap-2">
-        <Icon name="uil:wrench" />
-        <span class="text-sm">{{ $t("shared.moreTools") }}</span>
-      </NuxtLink>
-      <span class="text-sm text-stone-400">/</span>
-      <p class="text-2xl font-bold">
-        {{ $t("pages./logo-generator.title") }}
-      </p>
-    </div>
+    <ToolTitle>{{ $t("pages./logo-generator.title") }}</ToolTitle>
     <div class="grow flex flex-col justify-center items-center gap-4">
       <div
         class="flex justify-center w-full *:max-w-2xl *:max-h-[75vh]"

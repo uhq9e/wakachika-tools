@@ -34,6 +34,11 @@
       "series": "系列",
       "saveImage": "保存图片",
       "vertical": "纵向"
+    },
+    "/scenario-search": {
+      "title": "花结剧情检索",
+      "description": "以关键词检索剧情出处",
+      "inputPlaceholder": "输入想要检索的台词片段"
     }
   }
 }

@@ -17,6 +17,11 @@ const toolItems = [
     imageAlt: "Logo Generator",
     href: localePath("/logo-generator"),
   },
+  {
+    title: t("pages./scenario-search.title"),
+    description: t("pages./scenario-search.description"),
+    href: localePath("/scenario-search"),
+  },
 ];
 </script>
 

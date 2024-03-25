@@ -34,6 +34,10 @@
       "series": "シリーズ",
       "saveImage": "画像を保存",
       "vertical": "縦向き"
+    },
+    "/scenario-search": {
+      "title": "ゆゆゆいシナリオ検索",
+      "inputPlaceholder": "検索したいセリフの一部を入力"
     }
   }
 }

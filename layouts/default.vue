@@ -7,7 +7,7 @@ const { locale } = useI18n();
 </script>
 
 <template>
-  <main class="w-screen h-screen p-4 relative">
+  <main class="w-screen h-screen p-4 relative overflow-y-auto">
     <Html :class="`font-${locale}`"></Html>
     <slot />
   </main>
