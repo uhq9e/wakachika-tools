@@ -37,7 +37,7 @@
     },
     "/scenario-search": {
       "title": "花结剧情检索",
-      "description": "以关键词检索剧情出处",
+      "description": "检索对话在花结剧情中的出处",
       "inputPlaceholder": "输入想要检索的台词片段"
     }
   }

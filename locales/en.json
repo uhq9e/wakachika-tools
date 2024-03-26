@@ -37,6 +37,7 @@
     },
     "/scenario-search": {
       "title": "YuYuYui Scenario Search",
+      "description": "Find the source of the dialogue in the YuYuYui scenarios",
       "inputPlaceholder": "Enter the line fragment you want to search"
     }
   }

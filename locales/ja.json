@@ -37,7 +37,8 @@
     },
     "/scenario-search": {
       "title": "ゆゆゆいシナリオ検索",
-      "inputPlaceholder": "検索したいセリフの一部を入力"
+      "description": "ゆゆゆいシナリオからセリフの出所を探す",
+      "inputPlaceholder": "探したいセリフの一部を入力"
     }
   }
 }
