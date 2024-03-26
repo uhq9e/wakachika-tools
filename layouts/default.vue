@@ -7,11 +7,20 @@ const { locale } = useI18n();
 </script>
 
 <template>
-  <main class="w-screen h-screen p-4 relative overflow-y-auto">
+  <main class="p-4 relative overflow-y-auto">
     <Html :class="`font-${locale}`"></Html>
     <slot />
   </main>
 </template>
+
+<style scoped>
+main {
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+}
+</style>
 
 <style>
 .font-zh {

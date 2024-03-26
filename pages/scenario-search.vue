@@ -23,6 +23,9 @@ const { t } = useI18n();
 useSeoMeta({
   title: t("pages./scenario-search.title"),
   description: t("pages./scenario-search.description"),
+  ogTitle: t("pages./scenario-search.title"),
+  ogDescription: t("pages./scenario-search.description"),
+  twitterCard: "summary",
 });
 
 const route = useRoute();

@@ -4,6 +4,7 @@ import type {
   IHighlightRange,
   ILogoMeta,
 } from "dearu-logo-generator/types/lib/types/shared";
+import { siteHost } from "~/misc";
 
 const localePath = useLocalePath();
 const { t } = useI18n();
@@ -11,8 +12,10 @@ const { t } = useI18n();
 useSeoMeta({
   title: t("pages./logo-generator.title"),
   description: t("pages./logo-generator.description"),
-  ogImage: "/tools/logo-generator.webp",
-  twitterImage: "/tools/logo-generator.webp",
+  ogTitle: t("pages./logo-generator.title"),
+  ogDescription: t("pages./logo-generator.description"),
+  ogImage: `${siteHost}/tools/logo-generator.webp`,
+  twitterCard: "summary",
 });
 
 const seriesMap: Record<string, ILogoMeta> = {

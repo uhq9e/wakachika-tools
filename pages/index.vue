@@ -1,19 +1,23 @@
 <script setup lang="ts">
+import { siteHost } from "~/misc";
+
 const { t } = useI18n();
 const localePath = useLocalePath();
 
 useSeoMeta({
   title: t("pages./.title"),
   description: t("pages./.description"),
-  ogImage: "/tools/logo-generator.webp",
-  twitterImage: "/tools/logo-generator.webp",
+  ogTitle: t("pages./.title"),
+  ogDescription: t("pages./.description"),
+  ogImage: `${siteHost}/tools/logo-generator.webp`,
+  twitterCard: "summary",
 });
 
 const toolItems = [
   {
     title: t("pages./logo-generator.title"),
     description: t("pages./logo-generator.description"),
-    imageSrc: "/tools/logo-generator.svg",
+    imageSrc: `${siteHost}/tools/logo-generator.svg`,
     imageAlt: "Logo Generator",
     href: localePath("/logo-generator"),
   },
