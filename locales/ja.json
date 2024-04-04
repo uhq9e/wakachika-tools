@@ -33,11 +33,12 @@
       },
       "series": "シリーズ",
       "saveImage": "画像を保存",
-      "vertical": "縦向き"
+      "vertical": "縦向き",
+      "center": "中央揃え"
     },
     "/scenario-search": {
       "title": "ゆゆゆいシナリオ検索",
-      "description": "ゆゆゆいシナリオからセリフの出所を探す",
+      "description": "ゆゆゆいのシナリオからセリフの出所を探す",
       "inputPlaceholder": "探したいセリフの一部を入力"
     }
   }

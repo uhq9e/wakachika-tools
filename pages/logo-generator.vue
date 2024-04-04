@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import { LogoGenerator, nowayu, kumeyu, wasuyu } from "dearu-logo-generator";
+import {
+  LogoGenerator,
+  nowayu,
+  kumeyu,
+  wasuyu,
+  uhimi,
+} from "dearu-logo-generator";
 import type {
   IHighlightRange,
   ILogoMeta,
 } from "dearu-logo-generator/types/lib/types/shared";
 import { siteHost } from "~/misc";
 
-const localePath = useLocalePath();
 const { t } = useI18n();
 
 useSeoMeta({
@@ -22,6 +27,37 @@ const seriesMap: Record<string, ILogoMeta> = {
   wasuyu,
   nowayu,
   kumeyu,
+  uhimi,
+};
+
+const seriesInitialValues: Record<
+  string,
+  { firstLine: string; secondLine: string; vertical: boolean; center: boolean }
+> = {
+  wasuyu: {
+    firstLine: "鷲尾須美は",
+    secondLine: "勇者である",
+    vertical: false,
+    center: false,
+  },
+  nowayu: {
+    firstLine: "乃木若葉は",
+    secondLine: "勇者である",
+    vertical: false,
+    center: false,
+  },
+  kumeyu: {
+    firstLine: "楠 芽吹は",
+    secondLine: "勇者である",
+    vertical: false,
+    center: false,
+  },
+  uhimi: {
+    firstLine: "上里ひなたは",
+    secondLine: "巫女である",
+    vertical: false,
+    center: true,
+  },
 };
 
 const defaultSeries = "nowayu";
@@ -32,6 +68,7 @@ const firstLine = ref("乃木若葉は");
 const secondLine = ref("勇者である");
 
 const isVertical = ref(false);
+const isCentered = ref(false);
 
 const selectedSeries = ref(defaultSeries);
 
@@ -59,14 +96,20 @@ const svgStr = computed(() => svgEl.value.outerHTML);
 async function generate(
   firstLine: string,
   secondLine: string,
-  highlights: IHighlightRange[] = []
+  highlights: IHighlightRange[] = [],
+  center: boolean = false
 ): Promise<SVGSVGElement> {
-  const svgEl = await lg.generate(firstLine, secondLine, highlights);
+  const svgEl = await lg.generate(firstLine, secondLine, highlights, center);
   return svgEl;
 }
 
 async function onGenerate(): Promise<SVGSVGElement> {
-  return await generate(firstLine.value, secondLine.value, highlights.value);
+  return await generate(
+    firstLine.value,
+    secondLine.value,
+    highlights.value,
+    isCentered.value
+  );
 }
 
 function onSave() {
@@ -82,7 +125,7 @@ function onSave() {
 
     const a = document.createElement("a");
     a.href = canvas.toDataURL("image/png");
-    a.download = `${firstLine.value}_${secondLine.value}.png`;
+    a.download = `${firstLine.value}_${secondLine.value}.${selectedSeries.value}.png`;
     a.click();
   };
 }
@@ -135,12 +178,28 @@ function toggleHighlightHandler(event: MouseEvent) {
 }
 
 watch(
-  [firstLine, secondLine, currentSeriesMeta, isVertical, highlights],
-  async () => {
+  [selectedSeries, firstLine, secondLine, isVertical, isCentered, highlights],
+  async ([ss], [oss]) => {
     lg.setMeta(currentSeriesMeta.value);
     lg.setDirection(isVertical.value ? "vertical" : "horizontal");
-    const _svgEl = await onGenerate();
-    svgEl.value = _svgEl;
+
+    if (ss !== oss) {
+      const initials = seriesInitialValues[selectedSeries.value];
+
+      const oldFirstLine = firstLine.value;
+      const oldSecondLine = secondLine.value;
+
+      firstLine.value = initials.firstLine;
+      secondLine.value = initials.secondLine;
+
+      seriesInitialValues[oss].firstLine = oldFirstLine;
+      seriesInitialValues[oss].secondLine = oldSecondLine;
+
+      isVertical.value = initials.vertical;
+      isCentered.value = initials.center;
+    }
+
+    svgEl.value = await onGenerate();
   }
 );
 </script>
@@ -216,6 +275,12 @@ watch(
                 <Switch v-model:checked="isVertical" id="vertical" />
                 <Label for="vertical">{{
                   $t("pages./logo-generator.vertical")
+                }}</Label>
+              </div>
+              <div class="flex items-center gap-2">
+                <Switch v-model:checked="isCentered" id="center" />
+                <Label for="center">{{
+                  $t("pages./logo-generator.center")
                 }}</Label>
               </div>
             </PopoverContent>

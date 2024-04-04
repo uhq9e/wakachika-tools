@@ -33,7 +33,8 @@
       },
       "series": "系列",
       "saveImage": "保存图片",
-      "vertical": "纵向"
+      "vertical": "纵向",
+      "center": "居中"
     },
     "/scenario-search": {
       "title": "花结剧情检索",

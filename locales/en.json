@@ -33,11 +33,12 @@
       },
       "series": "Series",
       "saveImage": "Save image",
-      "vertical": "Vertical"
+      "vertical": "Vertical",
+      "center": "中央揃え"
     },
     "/scenario-search": {
       "title": "YuYuYui Scenario Search",
-      "description": "Find the source of the dialogue in the YuYuYui scenarios",
+      "description": "Find the source of the dialogue in YuYuYui scenarios",
       "inputPlaceholder": "Enter the line fragment you want to search"
     }
   }
