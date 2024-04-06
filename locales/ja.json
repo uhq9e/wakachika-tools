@@ -34,7 +34,18 @@
       "series": "シリーズ",
       "saveImage": "画像を保存",
       "vertical": "縦向き",
-      "center": "中央揃え"
+      "center": "中央揃え",
+      "customMode": "カスタム",
+      "outlineColor": "輪郭線の色",
+      "backgroundBoxColor": "背景ボックスの色",
+      "foregroundBoxColor": "前景ボックスの色",
+      "textColor": "文字の色",
+      "textHighlightColor": "ハイライト文字の色",
+      "backgroundImage": "背景画像",
+      "offsetMainAxis": "主軸のオフセット",
+      "offsetCrossAxis": "交差軸のオフセット",
+      "saveImageSVG": "SVGを保存",
+      "highlightHint": "＼　枠をクリックするとハイライトが切り替わるよ！　／"
     },
     "/scenario-search": {
       "title": "ゆゆゆいシナリオ検索",

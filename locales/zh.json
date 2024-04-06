@@ -13,7 +13,7 @@
   "pages": {
     "/": {
       "title": "WKCK工具箱 Powered by uhq9e",
-      "description": "属于若千人自己的工具箱（迫真）",
+      "description": "一个YuYuYu系列相关的工具箱 Powered by uhq9e",
       "navTitle": "WKCK工具箱",
       "navTitleSub": "Powered by uhq9e",
       "mainSite": "主站"
@@ -34,7 +34,18 @@
       "series": "系列",
       "saveImage": "保存图片",
       "vertical": "纵向",
-      "center": "居中"
+      "center": "居中",
+      "customMode": "自定义",
+      "outlineColor": "轮廓线颜色",
+      "backgroundBoxColor": "背景框颜色",
+      "foregroundBoxColor": "前景框颜色",
+      "textColor": "文本颜色",
+      "textHighlightColor": "高光文本颜色",
+      "backgroundImage": "背景图片",
+      "offsetMainAxis": "主轴偏移",
+      "offsetCrossAxis": "交叉轴偏移",
+      "saveImageSVG": "保存SVG",
+      "highlightHint": "＼　点击框框可以切换高光哦！　／"
     },
     "/scenario-search": {
       "title": "花结剧情检索",

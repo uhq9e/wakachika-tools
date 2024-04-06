@@ -21,8 +21,8 @@
     "/logo-generator": {
       "title": "Yuusha de Aru series Logo Generator",
       "description": "Generate Yuusha de Aru series logo",
-      "firstLine": "First Line",
-      "secondLine": "Second Line",
+      "firstLine": "First line",
+      "secondLine": "Second line",
       "selectSeries": "Select series",
       "seriesNames": {
         "yuyuyu": "Yuuki Yuuna is a Hero",
@@ -34,7 +34,18 @@
       "series": "Series",
       "saveImage": "Save image",
       "vertical": "Vertical",
-      "center": "Center align"
+      "center": "Center align",
+      "customMode": "Custom",
+      "outlineColor": "Outline color",
+      "backgroundBoxColor": "Background box color",
+      "foregroundBoxColor": "Foreground box color",
+      "textColor": "Text color",
+      "textHighlightColor": "Highlight text color",
+      "backgroundImage": "Background image",
+      "offsetMainAxis": "Main axis offset",
+      "offsetCrossAxis": "Cross axis offset",
+      "saveImageSVG": "Save SVG",
+      "highlightHint": "\\ Click the box to switch highlights! /"
     },
     "/scenario-search": {
       "title": "YuYuYui Scenario Search",

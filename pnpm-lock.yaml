@@ -30,11 +30,14 @@ dependencies:
     specifier: ^2.1.0
     version: 2.1.0
   dearu-logo-generator:
-    specifier: ^1.1.11
-    version: 1.1.11
+    specifier: ^1.1.15
+    version: 1.1.15
   nuxt:
     specifier: ^3.10.3
     version: 3.10.3(rollup@4.13.0)(typescript@5.4.2)(vite@5.1.6)
+  radash:
+    specifier: ^12.1.0
+    version: 12.1.0
   radix-vue:
     specifier: ^1.5.2
     version: 1.5.2(vue@3.4.21)
@@ -4173,8 +4176,8 @@ packages:
       drizzle-orm:
         optional: true
 
-  /dearu-logo-generator@1.1.11:
-    resolution: {integrity: sha512-Cfjf+Se6c02vR3X88B+GHiF/TTacMoeuEQUKdMaW4n1fs2SFksapcnoUGaySTBhtRJS47DvHGnrclHe84aLsTQ==}
+  /dearu-logo-generator@1.1.15:
+    resolution: {integrity: sha512-A3pVvcNAUUTJ+1OVtq/2x1bZWwFyhTulveENovgwZ4dCFCfJEaHOhGzh8QUi8eRSKG5+vN8f+t0R7uZ3QwYx0Q==}
     dependencies:
       linkedom: 0.16.10
       opentype.js: 1.3.4
@@ -7198,6 +7201,11 @@ packages:
 
   /queue-tick@1.0.1:
     resolution: {integrity: sha512-kJt5qhMxoszgU/62PLP1CJytzd2NKetjSRnyuj31fDd3Rlcz3fzlFdFLD1SItunPwyqEOkca6GbV612BWfaBag==}
+
+  /radash@12.1.0:
+    resolution: {integrity: sha512-b0Zcf09AhqKS83btmUeYBS8tFK7XL2e3RvLmZcm0sTdF1/UUlHSsjXdCcWNxe7yfmAlPve5ym0DmKGtTzP6kVQ==}
+    engines: {node: '>=14.18.0'}
+    dev: false
 
   /radix-vue@1.5.2(vue@3.4.21):
     resolution: {integrity: sha512-XyXB6mYm7dthW56LDHG4ttR3x+XtspTi48nSq4vHoHldgGZzAEa5VXlqUCr2J21fNKrt3NIYhIIRLB6kKwWwrA==}
