@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  vite: {
+    build: {
+      target: "es2015",
+    },
+  },
   modules: [
     "@nuxtjs/i18n",
     "@vite-pwa/nuxt",

@@ -243,14 +243,46 @@ watch(customMode, (v) => {
 <template>
   <div class="size-full flex flex-col">
     <ToolTitle>{{ $t("pages./logo-generator.title") }}</ToolTitle>
-    <div class="grow flex flex-col justify-center items-center gap-4">
-      <div class="text-xs text-stone-400">{{ $t("pages./logo-generator.highlightHint") }}</div>
+    <div class="grow flex flex-col h-full justify-center items-center gap-4">
+      <div class="text-xs text-stone-400">
+        {{ $t("pages./logo-generator.highlightHint") }}
+      </div>
       <div
-        class="flex justify-center w-full *:max-w-2xl *:max-h-[75vh]"
+        :class="[
+          'flex justify-center items-center w-full',
+          isVertical ? '*:h-[65vh]' : '*:h-[300px] sm:*:h-[405px]',
+        ]"
         v-html="svgStr"
         @click="toggleHighlightHandler"
       ></div>
       <div class="flex flex-col items-center gap-3">
+        <div class="flex flex-col gap-1.5 w-full">
+          <Label for="select_series">
+            {{ $t("pages./logo-generator.series") }}
+          </Label>
+          <Select v-model="selectedSeries" :disabled="customMode">
+            <SelectTrigger id="select_series">
+              <SelectValue
+                :placeholder="$t('pages./logo-generator.selectSeries')"
+              />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>{{
+                  $t("pages./logo-generator.series")
+                }}</SelectLabel>
+                <SelectItem
+                  v-for="name in Object.keys(seriesMap)"
+                  :key="name"
+                  :value="name"
+                  >{{
+                    $t(`pages./logo-generator.seriesNames.${name}`)
+                  }}</SelectItem
+                >
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
         <div class="flex flex-col items-end sm:flex-row gap-3">
           <div class="flex flex-col gap-1.5">
             <Label for="firstline">
@@ -287,28 +319,6 @@ watch(customMode, (v) => {
                 </VTooltip>
               </PopoverTrigger>
               <PopoverContent class="flex flex-col gap-3">
-                <Select v-model="selectedSeries" :disabled="customMode">
-                  <SelectTrigger>
-                    <SelectValue
-                      :placeholder="$t('pages./logo-generator.selectSeries')"
-                    />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel>{{
-                        $t("pages./logo-generator.series")
-                      }}</SelectLabel>
-                      <SelectItem
-                        v-for="name in Object.keys(seriesMap)"
-                        :key="name"
-                        :value="name"
-                        >{{
-                          $t(`pages./logo-generator.seriesNames.${name}`)
-                        }}</SelectItem
-                      >
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
                 <div class="flex items-center gap-2">
                   <Switch v-model:checked="isVertical" id="vertical" />
                   <Label for="vertical">{{
