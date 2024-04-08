@@ -92,7 +92,7 @@ const highlights = computed(() => {
   return ranges;
 });
 
-let canvasRendered = false;
+let bgImageRendered = false;
 
 async function generate(): Promise<SVGSVGElement> {
   const svgEl = await lg.generate(
@@ -139,6 +139,10 @@ async function svgToDataURL(svg: SVGSVGElement): Promise<string> {
 
   await img.decode();
 
+  if (!bgImageRendered) {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+  }
+
   const canvas = document.createElement("canvas");
   canvas.width = svgEl.value.viewBox.baseVal.width;
   canvas.height = svgEl.value.viewBox.baseVal.height;
@@ -147,19 +151,16 @@ async function svgToDataURL(svg: SVGSVGElement): Promise<string> {
 
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
+  bgImageRendered = true;
+
   return canvas.toDataURL("image/png");
 }
 
 async function onSave() {
-  // prerendering
-  if (!canvasRendered) await svgToDataURL(svgEl.value);
-
   const a = document.createElement("a");
   a.href = await svgToDataURL(svgEl.value);
   a.download = `${firstLine.value}_${secondLine.value}.${selectedSeries.value}.png`;
   a.click();
-
-  canvasRendered = true;
 }
 
 function onSaveSvg() {
