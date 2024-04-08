@@ -8,7 +8,7 @@ const { locale } = useI18n();
 
 <template>
   <main class="p-4 relative overflow-y-auto">
-    <Html :class="`font-${locale}`"></Html>
+    <Html :lang="locale" :class="`font-${locale}`" />
     <slot />
   </main>
 </template>

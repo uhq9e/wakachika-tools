@@ -131,22 +131,32 @@ const onGenerate = debounce(
 const svgEl = ref(await generate());
 const svgStr = computed(() => svgEl.value.outerHTML);
 
-function onSave() {
+async function onSave() {
+  const imgBgHref = svgEl.value.querySelector("image")?.href.baseVal;
+
+  if (imgBgHref) {
+    const imgBg = new Image();
+    imgBg.src = imgBgHref;
+    await imgBg.decode();
+  }
+
   const img = new Image();
   img.src = `data:image/svg+xml;base64,${btoa(svgStr.value)}`;
-  img.onload = () => {
-    const canvas = document.createElement("canvas");
-    canvas.width = svgEl.value.viewBox.baseVal.width;
-    canvas.height = svgEl.value.viewBox.baseVal.height;
 
-    const ctx = canvas.getContext("2d")!;
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  await img.decode();
 
-    const a = document.createElement("a");
-    a.href = canvas.toDataURL("image/png");
-    a.download = `${firstLine.value}_${secondLine.value}.${selectedSeries.value}.png`;
-    a.click();
-  };
+  const canvas = document.createElement("canvas");
+  canvas.width = svgEl.value.viewBox.baseVal.width;
+  canvas.height = svgEl.value.viewBox.baseVal.height;
+
+  const ctx = canvas.getContext("2d")!;
+
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+  const a = document.createElement("a");
+  a.href = canvas.toDataURL("image/png");
+  a.download = `${firstLine.value}_${secondLine.value}.${selectedSeries.value}.png`;
+  a.click();
 }
 
 function onSaveSvg() {
@@ -243,7 +253,7 @@ watch(customMode, (v) => {
 <template>
   <div class="size-full flex flex-col">
     <ToolTitle>{{ $t("pages./logo-generator.title") }}</ToolTitle>
-    <div class="grow flex flex-col h-full justify-center items-center gap-4">
+    <div class="grow flex flex-col justify-center items-center gap-4">
       <div class="text-xs text-stone-400">
         {{ $t("pages./logo-generator.highlightHint") }}
       </div>
@@ -283,8 +293,8 @@ watch(customMode, (v) => {
             </SelectContent>
           </Select>
         </div>
-        <div class="flex flex-col items-end sm:flex-row gap-3">
-          <div class="flex flex-col gap-1.5">
+        <div class="flex flex-col items-end sm:flex-row gap-3 w-full">
+          <div class="flex flex-col gap-1.5 grow w-full sm:w-auto">
             <Label for="firstline">
               {{ $t("pages./logo-generator.firstLine") }}
             </Label>
@@ -295,7 +305,7 @@ watch(customMode, (v) => {
               :placeholder="$t('pages./logo-generator.firstLine')"
             />
           </div>
-          <div class="flex flex-col gap-1.5">
+          <div class="flex flex-col gap-1.5 grow w-full sm:w-auto">
             <Label for="secondline">
               {{ $t("pages./logo-generator.secondLine") }}
             </Label>
