@@ -140,7 +140,7 @@ function onSave() {
     canvas.height = svgEl.value.viewBox.baseVal.height;
 
     const ctx = canvas.getContext("2d")!;
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
     const a = document.createElement("a");
     a.href = canvas.toDataURL("image/png");
