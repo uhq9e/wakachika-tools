@@ -92,6 +92,8 @@ const highlights = computed(() => {
   return ranges;
 });
 
+let canvasRendered = false;
+
 async function generate(): Promise<SVGSVGElement> {
   const svgEl = await lg.generate(
     firstLine.value,
@@ -131,17 +133,9 @@ const onGenerate = debounce(
 const svgEl = ref(await generate());
 const svgStr = computed(() => svgEl.value.outerHTML);
 
-async function onSave() {
-  const imgBgHref = svgEl.value.querySelector("image")?.href.baseVal;
-
-  if (imgBgHref) {
-    const imgBg = new Image();
-    imgBg.src = imgBgHref;
-    await imgBg.decode();
-  }
-
+async function svgToDataURL(svg: SVGSVGElement): Promise<string> {
   const img = new Image();
-  img.src = `data:image/svg+xml;base64,${btoa(svgStr.value)}`;
+  img.src = `data:image/svg+xml;base64,${btoa(svg.outerHTML)}`;
 
   await img.decode();
 
@@ -153,10 +147,19 @@ async function onSave() {
 
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
+  return canvas.toDataURL("image/png");
+}
+
+async function onSave() {
+  // prerendering
+  if (!canvasRendered) await svgToDataURL(svgEl.value);
+
   const a = document.createElement("a");
-  a.href = canvas.toDataURL("image/png");
+  a.href = await svgToDataURL(svgEl.value);
   a.download = `${firstLine.value}_${secondLine.value}.${selectedSeries.value}.png`;
   a.click();
+
+  canvasRendered = true;
 }
 
 function onSaveSvg() {
