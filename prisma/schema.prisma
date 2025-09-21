@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -14,10 +15,10 @@ datasource db {
 }
 
 model ScenarioLine {
-  id        Int    @id @default(autoincrement())
-  fileId    String
-  location  String
-  speaker   String
-  voiceId   String
-  text      String
+  id       Int    @id @default(autoincrement())
+  fileId   String
+  location String
+  speaker  String
+  voiceId  String
+  text     String
 }

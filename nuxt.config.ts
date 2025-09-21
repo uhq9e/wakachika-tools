@@ -13,6 +13,15 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "nuxt-icon",
   ],
+  nitro: {
+    alias: {
+      ".prisma/client/default": "./generated/prisma/default.js",
+    },
+    externals: {
+      trace: false,
+      inline: ["@prisma/client"],
+    },
+  },
   shadcn: {
     prefix: "",
     componentDir: "./components/ui",
