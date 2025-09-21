@@ -5,6 +5,7 @@ import {
   kumeyu,
   wasuyu,
   uhimi,
+  yuyuyu,
 } from "dearu-logo-generator";
 import type {
   IHighlightRange,
@@ -25,6 +26,7 @@ useSeoMeta({
 });
 
 const seriesMap: Record<string, ILogoMeta> = {
+  yuyuyu,
   wasuyu,
   nowayu,
   kumeyu,
@@ -35,6 +37,12 @@ const seriesInitialValues: Record<
   string,
   { firstLine: string; secondLine: string; vertical: boolean; center: boolean }
 > = {
+  yuyuyu: {
+    firstLine: "結城友奈は",
+    secondLine: "勇者である",
+    vertical: false,
+    center: false,
+  },
   wasuyu: {
     firstLine: "鷲尾須美は",
     secondLine: "勇者である",
@@ -61,15 +69,15 @@ const seriesInitialValues: Record<
   },
 };
 
-const defaultSeries = "nowayu";
+const defaultSeries = "yuyuyu";
 
 const lg = new LogoGenerator(seriesMap[defaultSeries]);
 
-const firstLine = ref("乃木若葉は");
-const secondLine = ref("勇者である");
+const firstLine = ref(seriesInitialValues[defaultSeries].firstLine);
+const secondLine = ref(seriesInitialValues[defaultSeries].secondLine);
 
-const isVertical = ref(false);
-const isCentered = ref(false);
+const isVertical = ref(seriesInitialValues[defaultSeries].vertical);
+const isCentered = ref(seriesInitialValues[defaultSeries].center);
 
 const selectedSeries = ref(defaultSeries);
 
